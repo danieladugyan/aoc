@@ -14,14 +14,11 @@ int main() {
     sort(l.begin(), l.end());
     sort(r.begin(), r.end());
 
-    int diff = 0;
-    auto y = r.begin();
-
+    int score = 0;
     for (auto& x : l) {
-        diff += abs(x - *y);
-        ++y;
-        // cout << x << " " << *y << endl;
-        // cout << "diff: " << diff << endl;
+        int freq = count(r.begin(), r.end(), x);
+        score += x * freq;
+        // cout << x << " " << freq << endl;
     }
-    cout << diff << endl;
+    cout << score << endl;
 }
