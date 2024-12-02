@@ -1,4 +1,9 @@
 {
   "python.analysis.typeCheckingMode": "basic",
-  "editor.tabSize": 4
+  "editor.tabSize": 4,
+  "files.associations": {
+    "iostream": "cpp",
+    "iosfwd": "cpp",
+    "ostream": "cpp"
+  }
 }
