@@ -39,10 +39,23 @@ int main() {
             }
         }
 
-        if (!fail) {
-            // cout << "success: ";
+        if (fail) {
+            for (unsigned i = 0; i < pages.size(); i++) {
+                for (unsigned j = 0; j < pages.size(); j++) {
+                    auto it = find_if(rules.begin(), rules.end(),
+                                      [i, j, pages](tuple<int, int> &e) {
+                                          return get<0>(e) == pages[i] &&
+                                                 get<1>(e) == pages[j];
+                                      });
+                    if (it != rules.end() && j > i) {
+                        iter_swap(pages.begin() + i, pages.begin() + j);
+                    }
+                }
+            }
+
+            // cout << "fail: ";
             // for (auto &&i : pages) {
-                // cout << i << ", ";
+            //     cout << i << ", ";
             // }
             int add = *(pages.begin() + pages.size() / 2);
             // cout << add;
