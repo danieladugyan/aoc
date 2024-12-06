@@ -2,8 +2,10 @@
   "python.analysis.typeCheckingMode": "basic",
   "editor.tabSize": 4,
   "files.associations": {
+    "*.beaver": "jflex",
     "iostream": "cpp",
     "iosfwd": "cpp",
-    "ostream": "cpp"
+    "ostream": "cpp",
+    "utility": "cpp"
   }
 }
