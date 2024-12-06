@@ -1,11 +1,12 @@
 #include <bits/stdc++.h>
+#define DEBUG 0
 
 using namespace std;
 
 int main() {
     vector<string> lines;
     string s;
-    int pos = 0;
+    auto pos = string::npos;
     unsigned row = 0, col = 0;
     bool found = false;
     pair<int, int> dir;
@@ -45,51 +46,87 @@ int main() {
     }
 
     // cout << row << "," << col << endl;
+    auto guard_pos = make_pair(row, col);
+    auto guard_dir = dir;
+    int loop = 0;
 
-    lines[row][col] = 'X';
-    pos = 1;
+    for (unsigned i = 0; i < lines.size(); i++) {
+        for (unsigned j = 0; j < lines[i].size(); j++) {
+            auto temp = lines;
+            // can't place obstacle on guard
+            if (i == get<0>(guard_pos) && j == get<1>(guard_pos)) {
+                continue;
+            }
+            // skip if already an obstacle
+            if (temp[i][j] == 'X') {
+                continue;
+            }
 
-    while (true) {
-        switch (lines[row][col]) {
-            case '#':
-                // travel in direction
-                row -= get<0>(dir);
-                col -= get<1>(dir);
+            // For all valid obstacle placements
 
-                // cout << "changing direction" << endl;
-                if (dir == make_pair(-1, 0)) {
-                    dir = make_pair(0, 1);
-                } else if (dir == make_pair(0, 1)) {
-                    dir = make_pair(1, 0);
-                } else if (dir == make_pair(1, 0)) {
-                    dir = make_pair(0, -1);
-                } else {
-                    dir = make_pair(-1, 0);
+#if DEBUG
+            cout << i << "," << j << endl;
+#endif
+
+            // place the new obstacle
+            temp[i][j] = 'O';
+
+            // reset to initial guard state
+            row = get<0>(guard_pos);
+            col = get<1>(guard_pos);
+            dir = guard_dir;
+
+            // log initial record
+            set<tuple<int, int, tuple<int, int>>> record;
+            record.insert(make_tuple(row, col, dir));
+
+            while (true) {
+#if DEBUG
+                temp[row][col] = 'X';
+                for (auto &&line : temp) {
+                    cout << line << endl;
                 }
-                break;
-            case '.':
-                pos += 1;
-                lines[row][col] = 'X';
-                break;
-            default:
-                break;
-        }
+                cout << "----------" << endl;
+#endif
+                auto next_row = row + get<0>(dir);
+                auto next_col = col + get<1>(dir);
 
-        // travel in direction
-        row += get<0>(dir);
-        col += get<1>(dir);
+                // The guard eventually leaves the mapped area.
+                if (!(0 <= next_row && next_row < temp.size() &&
+                      0 <= next_col && next_col < temp[row].size())) {
+                    break;
+                }
 
-        // for (auto &&line : lines) {
-        //     cout << line << endl;
-        // }
-        // cout << "----------" << endl;
-        // sleep(1);
+                // If there is something directly in front, turn right 90 deg.
+                if (temp[next_row][next_col] == '#' ||
+                    temp[next_row][next_col] == 'O') {
+                    if (dir == make_pair(-1, 0)) {
+                        dir = make_pair(0, 1);
+                    } else if (dir == make_pair(0, 1)) {
+                        dir = make_pair(1, 0);
+                    } else if (dir == make_pair(1, 0)) {
+                        dir = make_pair(0, -1);
+                    } else {
+                        dir = make_pair(-1, 0);
+                    }
+                } else {
+                    // Otherwise, take a step forward.
+                    row += get<0>(dir);
+                    col += get<1>(dir);
+                }
 
-        // out-of-bounds?
-        if (!(0 <= row && row < lines.size() && 0 <= col &&
-              col < lines[row].size())) {
-            break;
+                // If recurring pos+dir, the guard is stuck in a loop.
+                if (record.count(make_tuple(row, col, dir))) {
+#if DEBUG
+                    cout << "loop: " << i << "," << j << endl;
+#endif
+                    loop += 1;
+                    break;
+                }
+                record.insert(make_tuple(row, col, dir));
+            }
         }
     }
-    cout << pos << endl;
+
+    cout << loop << endl;
 }
