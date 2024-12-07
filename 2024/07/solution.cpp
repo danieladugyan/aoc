@@ -20,7 +20,7 @@ int main() {
 
         // cout << test << ": ";
         // for (auto &&i : nums) {
-            // cout << i << ",";
+        //     cout << i << ",";
         // }
         // cout << endl;
 
@@ -28,43 +28,57 @@ int main() {
         bool flag = false;
         // (n-1) gaps to place operands, i.e ++ +* *+ **
         for (int i = 0; i < n; i++) {
-            string ops;
-            int adds = i, muls = n - 1 - i;
-            for (int j = 0; j < muls; j++) {
-                ops.push_back('*');
-            }
-            for (int j = 0; j < adds; j++) {
-                ops.push_back('+');
-            }
-
-            do {
-                auto copynums = nums;
-                for (unsigned j = 0; j < ops.size(); j++) {
-                    // cout << "\t" << copynums[j] << ops[j] << copynums[j + 1] << endl;
-
-                    if (ops[j] == '*') {
-                        copynums[j + 1] *= copynums[j];
+            for (int j = 0; j < n; j++) {
+                for (int k = 0; k < n; k++) {
+                    string ops;
+                    if (i + j + k != n - 1) {
+                        continue;
                     }
-                    if (ops[j] == '+') {
-                        copynums[j + 1] += copynums[j];
+                    int muls = i, adds = j, cons = k;
+                    for (int x = 0; x < muls; x++) {
+                        ops.push_back('*');
                     }
+                    for (int x = 0; x < adds; x++) {
+                        ops.push_back('+');
+                    }
+                    for (int x = 0; x < cons; x++) {
+                        ops.push_back('|');
+                    }
+
+                    do {
+                        auto copynums = nums;
+                        for (unsigned j = 0; j < ops.size(); j++) {
+                            // cout << "\t" << copynums[j] << ops[j]
+                            //      << copynums[j + 1] << endl;
+
+                            if (ops[j] == '*') {
+                                copynums[j + 1] *= copynums[j];
+                            }
+                            if (ops[j] == '+') {
+                                copynums[j + 1] += copynums[j];
+                            }
+                            if (ops[j] == '|') {
+                                copynums[j + 1] =
+                                    stol(to_string(copynums[j]) +
+                                         to_string(copynums[j + 1]));
+                            }
+                        }
+                        long res = copynums.back();
+
+                        // cout << "\t" << ops << ": ";
+                        // cout << res << '\n' << endl;
+
+                        if (res == test) {
+                            answer += res;
+                            goto end;
+                        }
+
+                    } while (next_permutation(ops.begin(), ops.end()));
                 }
-                long res = copynums.back();
-
-                // cout << "\t" << ops << ": ";
-                // cout << res << endl;
-
-                if (res == test) {
-                    flag = true;
-                    answer += res;
-                    break;
-                }
-
-            } while (next_permutation(ops.begin(), ops.end()));
-            if (flag) {
-                break;
             }
         }
+    end:
+        flag = false;
     }
 
     cout << answer << endl;
