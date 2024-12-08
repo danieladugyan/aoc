@@ -59,14 +59,14 @@ int main() {
             for (auto &&p2 : a.second) {
                 if (p1 == p2) continue;
                 complex<int> diff = p2 - p1;
-                complex<int> prev = p1 - diff;
-                if (bounds(prev, w, h)) {
-                    pair<int, int> z {real(prev), imag(prev)};
+                int d = gcd(real(diff), imag(diff));
+                diff = {real(diff) / d, imag(diff) / d};
+                for (complex<int> pos = p1; bounds(pos, w, h); pos += diff) {
+                    pair<int, int> z{real(pos), imag(pos)};
                     locs.insert(z);
                 }
-                complex<int> next = p2 + diff;
-                if (bounds(next, w, h)) {
-                    pair<int, int> z {real(next), imag(next)};
+                for (complex<int> pos = p1; bounds(pos, w, h); pos -= diff) {
+                    pair<int, int> z{real(pos), imag(pos)};
                     locs.insert(z);
                 }
             }
