@@ -11,6 +11,10 @@
     "string": "cpp",
     "vector": "cpp",
     "rope": "cpp",
-    "complex": "cpp"
+    "complex": "cpp",
+    "span": "cpp",
+    "bitset": "cpp",
+    "chrono": "cpp",
+    "algorithm": "cpp"
   }
 }
