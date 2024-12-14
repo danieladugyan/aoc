@@ -33,6 +33,21 @@ ostream &operator<<(ostream &os, const Robot &r) {
     return os << "Robot(p=" << r.p << ", v=" << r.v << ")";
 }
 
+bool is_likely_tree(int area[WIDTH][HEIGHT]) {
+    // check if there are lots of robots in a line
+    int max_row = 0;
+    for (int y = 0; y < HEIGHT; y++) {
+        int row = 0;
+        for (int x = 0; x < WIDTH; x++) {
+            if (area[x][y]) {
+                row++;
+            }
+        }
+        max_row = max(max_row, row);
+    }
+    return max_row > 20;
+}
+
 int main() {
     vector<Robot> robots;
     int px, py, vx, vy;
@@ -43,36 +58,27 @@ int main() {
         robots.push_back(r);
     }
 
-    for (int i = 0; i < TIME; i++) {
+    int time = 0;
+    while (true) {
+        int area[WIDTH][HEIGHT] = {};
+
         for (auto &&r : robots) {
             r.move();
+            px = r.p.real();
+            py = r.p.imag();
+            area[px][py] += 1;
+        }
+        time++;
+
+        if (is_likely_tree(area)) {
+            cout << "t = " << time << endl;
+            for (int x = 0; x < WIDTH; x++) {
+                for (int y = 0; y < HEIGHT; y++) {
+                    cout << area[x][y];
+                }
+                cout << endl;
+            }
+            cout << "------------------" << endl;
         }
     }
-
-    sort(robots.begin(), robots.end());
-    for (auto &&r : robots) {
-        cout << r << endl;
-    }
-
-    int quads[4] = {};
-    for (auto &&r : robots) {
-        px = r.p.real();
-        py = r.p.imag();
-
-        if (px < WIDTH / 2 && py < HEIGHT / 2) {
-            ++quads[0];
-        } else if (px > WIDTH / 2 && py < HEIGHT / 2) {
-            ++quads[1];
-        } else if (px < WIDTH / 2 && py > HEIGHT / 2) {
-            ++quads[2];
-        } else if (px > WIDTH / 2 && py > HEIGHT / 2) {
-            ++quads[3];
-        }
-    }
-
-    int answer = 1;
-    for (int i = 0; i < 4; i++) {
-        answer *= quads[i];
-    }
-    cout << answer << endl;
 }
