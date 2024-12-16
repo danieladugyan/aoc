@@ -1,7 +1,7 @@
 #include <bits/stdc++.h>
 
 using namespace std;
-typedef pair<int, int> vec2;
+typedef pair<long, long> vec2;
 
 template <typename T, typename Y>
 auto operator<<(ostream& stream, pair<T, Y> const& p) -> ostream& {
@@ -11,36 +11,25 @@ auto operator<<(ostream& stream, pair<T, Y> const& p) -> ostream& {
 
 int main() {
     vec2 a, b, prize;
-    int total_tokens = 0;
-    while (scanf("Button A: X+%d, Y+%d\n", &a.first, &a.second) != EOF) {
-        scanf("Button B: X+%d, Y+%d\n", &b.first, &b.second);
-        scanf("Prize: X=%d, Y=%d\n", &prize.first, &prize.second);
+    int i = 0;
+    while (scanf("Button A: X+%li, Y+%li\n", &a.first, &a.second) != EOF) {
+        scanf("Button B: X+%li, Y+%li\n", &b.first, &b.second);
+        scanf("Prize: X=%li, Y=%li\n", &prize.first, &prize.second);
 
-        // cout << a << endl;
-        // cout << b << endl;
-        // cout << prize << endl;
+        stringstream ss;
+        ss << "data" << i << ".dzn";
+        ofstream file(ss.str());
 
-        vec2 pos;
-        bool flag = false;
-        int tokens = 0;
-        for (int db = 0; db < 100; db++) {
-            for (int da = 0; da < 100; da++) {
-                pos = {a.first * da + b.first * db,
-                       a.second * da + b.second * db};
-                if (pos == prize) {
-                    tokens = da * 3 + db;
-                    // cout << "X: " << da << " Y: " << db << endl;
-                    // cout << "tokens: " << tokens << endl;
-                    flag = true;
-                    break;
-                }
-            }
+        prize.first += 10000000000000;
+        prize.second += 10000000000000;
 
-            if (flag) break;
-        }
-        total_tokens += tokens;
-
-        // cout << endl;
+        file << "ax = " << a.first << ";" << endl;
+        file << "ay = " << a.second << ";" << endl;
+        file << "bx = " << b.first << ";" << endl;
+        file << "by = " << b.second << ";" << endl;
+        file << "x = " << prize.first << ";" << endl;
+        file << "y = " << prize.second << ";" << endl;
+        file.close();
+        i++;
     }
-    cout << total_tokens << endl;
 }
