@@ -5,7 +5,7 @@
 using namespace std;
 
 typedef pair<int, int> vec2;
-typedef pair<vec2, vec2> node_t; // pos, dir
+typedef pair<vec2, vec2> node_t;  // pos, dir
 
 vector<vec2> dirs = {{0, 1}, {1, 0}, {0, -1}, {-1, 0}};
 
@@ -71,6 +71,7 @@ int main() {
     }
 
     set<node_t> seen;
+    map<node_t, set<node_t>> pred;
 
     // -distance, node_hash
     priority_queue<pair<int, node_t>> q;
@@ -103,17 +104,50 @@ int main() {
             // ...going to node b.
             node_t b = u.first;
             int w = u.second;
-            if (distance[a] + w < distance[b]) {
+            if (distance[a] + w <= distance[b]) {
                 distance[b] = distance[a] + w;
                 q.push({-distance[b], b});
+                pred.try_emplace(b, set<node_t>{});
+                pred[b].insert(a);
             }
         }
     }
 
+    // NOTE! this assumes there's only node with least cost
+    // Conceivably, you could reach the goal with different direction,
+    // but the same score. Not given our specific input though.
+    node_t goal_node;
+    int shortest = INT_MAX;
     for (auto&& dir : dirs) {
         node = get_node(goal, dir);
-        if (distance.count(node)) {
-            cout << "score: " << distance[node] << endl;
+        if (shortest > distance[node]) {
+            shortest = distance[node];
+            goal_node = node;
         }
     }
+    cout << "score: " << shortest << endl;
+
+    node = goal_node;
+    set<vec2> tiles;
+    vector<node_t> xs{goal_node};
+    while (!xs.empty()) {
+        node = xs.back();
+        xs.pop_back();
+
+        tiles.insert(get<POS>(node));
+        // if (node == player) break;
+
+        // cout << "(" << get<POS>(node).first << ", " << get<POS>(node).second
+        //      << ")" << " | ";
+        // cout << "(" << get<DIR>(node).first << ", " << get<DIR>(node).second
+        //      << ")" << endl;
+
+        for (auto&& i : pred[node]) {
+            if (find(xs.begin(), xs.end(), i) == xs.end()) {
+                xs.push_back(i);
+            }
+        }
+    }
+
+    cout << "tiles: " << tiles.size() << endl;
 }
