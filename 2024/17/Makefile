@@ -1,5 +1,5 @@
 compile:
-	g++ -std=c++17 -O2 -Wall solution.cpp -o solution.exe -g
+	g++ -std=c++17 -O3 -Wall solution.cpp -o solution.exe -g
 
 solve: compile
 	./solution.exe < input.txt
