@@ -2,6 +2,8 @@
 
 using namespace std;
 
+typedef pair<int, int> vec2;
+
 // The regions are located in a matrix.
 // In principle, each plant has an area of 1
 // and is surrounded by 4 fences,
@@ -13,11 +15,10 @@ using namespace std;
 // typedef struct cost;
 // struct cost {
 //     int area;
-//     int sides;
+//     int perimeter;
 // };
-typedef pair<int, int> vec2;
 
-char get(vec2 p, vector<string> *m) {
+char get(pair<int, int> p, vector<string> *m) {
     unsigned row = p.first;
     unsigned col = p.second;
     if (!(0 <= row && row < (*m).size())) return EOF;
@@ -26,23 +27,24 @@ char get(vec2 p, vector<string> *m) {
     return (*m)[row][col];
 }
 
-void print_pair(vec2 *p) {
-    cout << "(" << (*p).first << "," << (*p).second << ")";
+template <typename T, typename Y>
+auto operator<<(ostream &stream, pair<T, Y> const &p) -> ostream & {
+    stream << "(" << p.first << ',' << p.second << ")";
+    return stream;
 }
 
-int region(vec2 p, vector<string> *m, set<vec2> *visited) {
+int region(pair<int, int> p, vector<string> *m, set<pair<int, int>> *visited) {
     char plant = (*m)[p.first][p.second];
-    set<vec2> q;
+    set<pair<int, int>> q;
     q.insert(p);
+    set<pair<vec2, vec2>> perims;
 
     int area = 0;
+    int sides = 0;
+    int perimeter = 0;
 
-    vector<vec2> dirs = {{0, 1}, {-1, 0}, {1, 0}, {0, -1}};
-    vec2 curr, next;
-
-    // position of perim, vertical/horizontal
-    vector<vec2> perims;
-
+    vector<pair<int, int>> dirs = {{0, 1}, {-1, 0}, {1, 0}, {0, -1}};
+    pair<int, int> curr, next;
     while (!q.empty()) {
         // pop from queue
         curr = *q.begin();
@@ -69,7 +71,13 @@ int region(vec2 p, vector<string> *m, set<vec2> *visited) {
             bool is_visited = (*visited).count(next);
 
             if (!is_plant) {
-                perims.push_back(next);
+                perimeter += 1;
+                // "normalize" sides by always storing positive dir
+                if (dir.first < 0 || dir.second < 0) {
+                    perims.insert({next, {abs(dir.first), abs(dir.second)}});
+                } else {
+                    perims.insert({curr, dir});
+                }
             }
 
             // cout << "\tnext: ";
@@ -85,90 +93,49 @@ int region(vec2 p, vector<string> *m, set<vec2> *visited) {
         }
     }
 
-    for (auto &&i : perims) {
-        cout << "perim: ";
-        cout << "(" << i.first << "," << i.second << ")";
-        cout << endl;
+    // cout << "plant = " << plant << " | " << "pos = " << p
+    //      << " | perimeter = " << perimeter << " | " << "set = " << perims.size()
+    //      << endl;
+    // for (auto &&i : perims) {
+    //     cout << i.first << "->" << i.second << endl;
+    // }
+
+    pair<vec2, vec2> curr_perim, next_perim;
+    while (!perims.empty()) {
+        // take a perimeter segment from the "queue"
+        curr_perim = *perims.begin();
+        bool is_plant = get(curr_perim.first, m) == plant;
+
+        // delete it and all of its adjacent perimeters
+        perims.erase(perims.begin());
+        while (true) {
+            curr_perim = {{curr_perim.first.first + curr_perim.second.second,
+                           curr_perim.first.second + curr_perim.second.first},
+                          curr_perim.second};
+            if (perims.count(curr_perim) &&
+                (get(curr_perim.first, m) == plant) == is_plant) {
+                perims.erase(curr_perim);
+            } else {
+                break;
+            }
+        }
+
+        while (true) {
+            curr_perim = {{curr_perim.first.first - curr_perim.second.second,
+                           curr_perim.first.second - curr_perim.second.first},
+                          curr_perim.second};
+            if (perims.count(curr_perim) &&
+                (get(curr_perim.first, m) == plant) == is_plant) {
+                perims.erase(curr_perim);
+            } else {
+                break;
+            }
+        }
+
+        sides++;
     }
-    cout << endl;
 
-    vec2 first = *perims.begin();
-    vec2 curr_dir{0, 0};
-    vector<vec2> diag_dirs = {{1, 1}, {1, -1}, {-1, -1}, {-1, 1}};
-    set<vec2> vis;
-
-    int sides = 0;
-    bool flag;
-
-    curr = first;
-    do {
-        vis.insert(curr);
-        cout << "curr: ";
-        print_pair(&curr);
-        cout << " sides: " << sides;
-        cout << endl;
-
-        flag = false;
-        for (auto &&dir : dirs) {
-            next = make_pair(curr.first + dir.first, curr.second + dir.second);
-
-            cout << "\tnext: ";
-            print_pair(&next);
-            cout << endl;
-
-            if (find(perims.begin(), perims.end(), next) != perims.end() &&
-                !vis.count(next)) {
-                flag = true;
-                curr = next;
-                if (curr_dir != dir) {
-                    sides += 1;
-                    curr_dir = dir;
-                }
-                break;
-            }
-        }
-
-        // if directly adjacent perim, continue to next perim
-        if (flag) continue;
-
-        // if diagonally adjacent, it's a new side
-        for (auto &&dir : diag_dirs) {
-            next = make_pair(curr.first + dir.first, curr.second + dir.second);
-
-            cout << "\tnext: ";
-            print_pair(&next);
-            cout << endl;
-
-            if (find(perims.begin(), perims.end(), next) != perims.end() &&
-                !vis.count(next)) {
-                flag = true;
-                if (get({next.first, curr.second}, m) == plant) {
-                    curr = {curr.first, next.second};
-                    if (curr_dir != make_pair(0, dir.second)) {
-                        sides += 1;
-                        curr_dir = make_pair(0, dir.second);
-                    }
-                } else {
-                    curr = {next.first, curr.second};
-                    if (curr_dir != make_pair(dir.first, 0)) {
-                        sides += 1;
-                        curr_dir = make_pair(dir.first, 0);
-                    }
-                }
-                break;
-            }
-        }
-
-        if (flag) continue;
-
-        vec2 diff = {first.first - curr.first, first.second - curr.second};
-        if (abs(diff.first) <= 1 && abs(diff.second) <= 1) {
-            curr = first;
-        }
-
-    } while (curr != first);
-
-    cout << "area = " << area << " sides = " << sides << endl;
+    // cout << "area = " << area << " sides = " << sides << endl << endl;
     return area * sides;
 }
 
@@ -179,7 +146,7 @@ int main() {
         m.push_back(s);
     }
 
-    set<vec2> visited;
+    set<pair<int, int>> visited;
     int sum = 0;
     for (unsigned row = 0; row < m.size(); row++) {
         for (unsigned col = 0; col < m[col].size(); col++) {
@@ -189,11 +156,12 @@ int main() {
             auto p = make_pair(row, col);
             if (visited.count(p)) continue;
 
-            cout << "------" << endl;
-            cout << c << ":" << endl;
             int r = region(p, &m, &visited);
             sum += r;
-            cout << "region score = " << r << endl;
+
+            // cout << "------" << endl;
+            // cout << c << ":" << endl;
+            // cout << "region score = " << r << endl;
         }
     }
     cout << sum << endl;
