@@ -3,6 +3,12 @@ compile:
 
 solve: compile
 	./solution.exe < input.txt
-
+	
 test: compile
 	./solution.exe < example.txt
+
+pysolve:
+	python main.py < input.txt
+
+pytest:
+	python main.py < example.txt
