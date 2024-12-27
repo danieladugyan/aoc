@@ -1,5 +1,6 @@
 #include "lib.hpp"
 
+#define ROBOTS 25
 #define NUMPAD_ROWS 4
 #define NUMPAD_COLS 3
 #define KEYPAD_ROWS 2
@@ -26,10 +27,24 @@ map<vec2, char> dir_move = {
     {{-1, 0}, '^'},
 };
 
-string walk(vec2 robot_pos, vec2 goal, vec2 danger) {
+map<pair<int, string>, long> cache;
+
+/*
+ *  Returns the numbers of steps the last robot needs to take
+ *  for the robots[i] to move to its goal.
+ */
+long walk(int i, vector<vec2>* robots, vec2 goal) {
     string row_moves;
     string col_moves;
+    vec2 robot_pos = (*robots)[i];
     vec2 diff = goal - robot_pos;
+    vec2 danger;
+    if (i == 0) {
+        danger = num_coords[EOF];
+    } else {
+        danger = key_coords[EOF];
+    }
+
     int d_row = diff.first;
     if (d_row > 0) {
         row_moves.append(string(d_row, 'v'));
@@ -44,19 +59,43 @@ string walk(vec2 robot_pos, vec2 goal, vec2 danger) {
         col_moves.append(string(-d_col, '<'));
     }
 
-    // avoid disallowed corner of pads
+    (*robots)[i] = goal;
+    string moves;
     if (vec2{goal.first, robot_pos.second} == danger) {
-        return col_moves + row_moves + 'A';
-    };
-    if (vec2{robot_pos.first, goal.second} == danger) {
-        return row_moves + col_moves + 'A';
-    };
-
-    // Why is it optimal to go left first (if needed), otherwise up/down?
-    if (d_col < 0) {
-        return col_moves + row_moves + 'A';
+        moves = col_moves + row_moves;
+    } else if (vec2{robot_pos.first, goal.second} == danger) {
+        moves = row_moves + col_moves;
+    } else if (d_col < 0) {
+        // Why is it optimal to go left first (if needed), otherwise up/down?
+        moves = col_moves + row_moves;
+    } else {
+        moves = row_moves + col_moves;
     }
-    return row_moves + col_moves + 'A';
+    moves += 'A';
+
+    if (i == ROBOTS) {
+        return moves.size();
+    } else {
+        long answer = 0;
+
+        pair<int, string> cache_key{i, moves};
+        if (cache.count(cache_key)) {
+            answer = cache[cache_key];
+        } else {
+            i++;
+            for (auto&& c : moves) {
+                answer += walk(i, robots, key_coords[c]);
+            }
+        }
+
+        // if (i < 8) {
+        //     cout << string(i * 2, ' ') << i << ": " << robot_pos << " " <<
+        //     goal << " " << answer << endl;
+        // }
+        cache[cache_key] = answer;
+
+        return answer;
+    }
 }
 
 int main() {
@@ -74,38 +113,24 @@ int main() {
         }
     }
 
-    int answer = 0;
+    long answer = 0;
     string pin;
     while (getline(cin, pin)) {
         int pin_numeric = stoi(pin.substr(0, 3));
 
-        vec2 robot1 = num_coords['A'];
-        string moves1;
-        for (auto&& c : pin) {
-            vec2 next = num_coords[c];
-            moves1 += walk(robot1, next, num_coords[EOF]);
-            robot1 = next;
+        vector<vec2> robots;
+        robots.push_back(num_coords['A']);
+        for (int i = 0; i < ROBOTS; i++) {
+            robots.push_back(key_coords['A']);
         }
 
-        vec2 robot2 = key_coords['A'];
-        string moves2;
-        for (auto&& c : moves1) {
-            vec2 next = key_coords[c];
-            moves2 += walk(robot2, next, key_coords[EOF]);
-            robot2 = next;
+        for (auto&& pc : pin) {
+            cout << pc << endl;
+            answer += walk(0, &robots, num_coords[pc]) * pin_numeric;
+            cache.clear();
         }
 
-        vec2 robot3 = key_coords['A'];
-        string moves3;
-        for (auto&& c : moves2) {
-            vec2 next = key_coords[c];
-            moves3 += walk(robot3, next, key_coords[EOF]);
-            robot3 = next;
-        }
-
-        // cout << pin << ": " << moves3 << endl;
         // cout << moves3.size() << " * " << pin_numeric << endl;
-        answer += moves3.size() * pin_numeric;
         // cout << moves3 << endl;
         // cout << moves2 << endl;
         // cout << moves1 << endl;
