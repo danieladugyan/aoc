@@ -1,6 +1,6 @@
 from sys import stdin
-from tqdm import tqdm
 
+from tqdm import tqdm
 
 nodes = set()
 edges = []
@@ -26,7 +26,7 @@ for line in stdin.readlines():
 # for n1,n2 in edges:
 #     print(f"\t({n1})-[:LINK]->({n2}),")
 
-triangles = []
+triangles = set()
 for n1 in tqdm(nodes):
     for n2 in nodes:
         if n1 == n2: continue
@@ -36,7 +36,8 @@ for n1 in tqdm(nodes):
             if not (n1[0] == "t" or n2[0] == "t" or n3[0] == "t"): continue
 
             if n2 in graph[n1] and n3 in graph[n1] and n2 in graph[n3]:
-                triangles.append(sorted([n1,n2,n3]))
+                triangles.add(tuple(sorted([n1,n2,n3])))
 
-for t in sorted(triangles):
-    print(t)
+print(len(triangles))
+# for t in sorted(triangles):
+#     print(t)
