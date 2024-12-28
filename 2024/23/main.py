@@ -18,26 +18,42 @@ for line in stdin.readlines():
     graph[a].add(b)
     graph[b].add(a)
 
-# Solve using Neo4j GDS
-# print("CREATE")
-# for n in nodes:
-#     print(f"\t({n}:Computer {{name: '{n}'}}),")
-# print()
-# for n1,n2 in edges:
-#     print(f"\t({n1})-[:LINK]->({n2}),")
+triangles: set[tuple[str, str, str]] = set()
 
-triangles = set()
-for n1 in tqdm(nodes):
-    for n2 in nodes:
-        if n1 == n2: continue
-        for n3 in nodes:
-            if n1 == n3: continue
-            if n2 == n3: continue
-            if not (n1[0] == "t" or n2[0] == "t" or n3[0] == "t"): continue
+try:
+    with open("./out") as file:
+        for line in file:
+            triangles.add(eval(line))
+except:
+    pass
 
-            if n2 in graph[n1] and n3 in graph[n1] and n2 in graph[n3]:
-                triangles.add(tuple(sorted([n1,n2,n3])))
+if not triangles:
+    for n1 in tqdm(nodes):
+        for n2 in nodes:
+            if n1 == n2:
+                continue
+            for n3 in nodes:
+                if n1 == n3:
+                    continue
+                if n2 == n3:
+                    continue
 
-print(len(triangles))
-# for t in sorted(triangles):
-#     print(t)
+                if n2 in graph[n1] and n3 in graph[n1] and n2 in graph[n3]:
+                    triangles.add(tuple(sorted([n1, n2, n3])))
+
+biggest = 0
+clique = set()
+for t in tqdm(triangles):
+    q = set(t)
+    candidates = graph[t[0]] & graph[t[1]] & graph[t[2]]
+
+    while candidates:
+        v = candidates.pop()
+        q.add(v)
+        candidates = candidates & graph[v]
+
+    if len(q) > biggest:
+        biggest = len(q)
+        clique = q
+
+print(",".join(sorted(clique)))
