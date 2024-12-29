@@ -1,0 +1,855 @@
+// dot graph.dot -Tsvg -o graph.svg
+digraph G {
+    splines=ortho;
+    rankdir=LR;
+    ordering=out
+    ranksep=equally
+    shape=box;
+    node [style=filled]
+    edge [arrowsize=.5, headport=w, tailport=e]
+
+    ANDwrs [label="AND", shape=box, fillcolor="#AAAAFF"]
+    XORcbq [label="XOR", fillcolor="#FFAAAA", shape=egg]
+    XORsdc [label="XOR", fillcolor="#FFAAAA", shape=egg]
+    ANDtpd [label="AND", shape=box, fillcolor="#AAAAFF"]
+    ANDrkd [label="AND", shape=box, fillcolor="#AAAAFF"]
+    ORgmg [label="OR", fillcolor="#AAFFAA"]
+    XORwrh [label="XOR", fillcolor="#FFAAAA", shape=egg]
+    ANDcrq [label="AND", shape=box, fillcolor="#AAAAFF"]
+    ANDnkv [label="AND", shape=box, fillcolor="#AAAAFF"]
+    ORjkv [label="OR", fillcolor="#AAFFAA"]
+    ANDqrk [label="AND", shape=box, fillcolor="#AAAAFF"]
+    ANDfqc [label="AND", shape=box, fillcolor="#AAAAFF"]
+    XORnbf [label="XOR", fillcolor="#FFAAAA", shape=egg]
+    ANDhjh [label="AND", shape=box, fillcolor="#AAAAFF"]
+    ANDnjs [label="AND", shape=box, fillcolor="#AAAAFF"]
+    ORmjq [label="OR", fillcolor="#AAFFAA"]
+    ANDqwq [label="AND", shape=box, fillcolor="#AAAAFF"]
+    XORz41 [label="XOR", fillcolor="#FFAAAA", shape=egg]
+    XORppk [label="XOR", fillcolor="#FFAAAA", shape=egg]
+    XORz22 [label="XOR", fillcolor="#FFAAAA", shape=egg]
+    XORfrt [label="XOR", fillcolor="#FFAAAA", shape=egg]
+    ANDmhg [label="AND", shape=box, fillcolor="#AAAAFF"]
+    ANDntn [label="AND", shape=box, fillcolor="#AAAAFF"]
+    ORz45 [label="OR", fillcolor="#AAFFAA"]
+    ORz11 [label="OR", fillcolor="#AAFFAA"]
+    ANDfrw [label="AND", shape=box, fillcolor="#AAAAFF"]
+    ANDbjj [label="AND", shape=box, fillcolor="#AAAAFF"]
+    XORjth [label="XOR", fillcolor="#FFAAAA", shape=egg]
+    ORwbk [label="OR", fillcolor="#AAFFAA"]
+    ORvdg [label="OR", fillcolor="#AAFFAA"]
+    ANDpvd [label="AND", shape=box, fillcolor="#AAAAFF"]
+    ANDnjb [label="AND", shape=box, fillcolor="#AAAAFF"]
+    ANDrrr [label="AND", shape=box, fillcolor="#AAAAFF"]
+    ANDz23 [label="AND", shape=box, fillcolor="#AAAAFF"]
+    XORfqr [label="XOR", fillcolor="#FFAAAA", shape=egg]
+    XORfph [label="XOR", fillcolor="#FFAAAA", shape=egg]
+    XORz31 [label="XOR", fillcolor="#FFAAAA", shape=egg]
+    XORgjp [label="XOR", fillcolor="#FFAAAA", shape=egg]
+    ANDkdt [label="AND", shape=box, fillcolor="#AAAAFF"]
+    ANDdjd [label="AND", shape=box, fillcolor="#AAAAFF"]
+    XORkhg [label="XOR", fillcolor="#FFAAAA", shape=egg]
+    ORjkm [label="OR", fillcolor="#AAFFAA"]
+    XORhfh [label="XOR", fillcolor="#FFAAAA", shape=egg]
+    ORcnh [label="OR", fillcolor="#AAFFAA"]
+    ANDwmj [label="AND", shape=box, fillcolor="#AAAAFF"]
+    ANDngh [label="AND", shape=box, fillcolor="#AAAAFF"]
+    ANDmtm [label="AND", shape=box, fillcolor="#AAAAFF"]
+    ANDqgm [label="AND", shape=box, fillcolor="#AAAAFF"]
+    XORbmt [label="XOR", fillcolor="#FFAAAA", shape=egg]
+    XORqcb [label="XOR", fillcolor="#FFAAAA", shape=egg]
+    ANDbrw [label="AND", shape=box, fillcolor="#AAAAFF"]
+    XORz36 [label="XOR", fillcolor="#FFAAAA", shape=egg]
+    ANDcsc [label="AND", shape=box, fillcolor="#AAAAFF"]
+    ORhkc [label="OR", fillcolor="#AAFFAA"]
+    XORz04 [label="XOR", fillcolor="#FFAAAA", shape=egg]
+    XORz18 [label="XOR", fillcolor="#FFAAAA", shape=egg]
+    XORz29 [label="XOR", fillcolor="#FFAAAA", shape=egg]
+    ANDvsr [label="AND", shape=box, fillcolor="#AAAAFF"]
+    ORwjp [label="OR", fillcolor="#AAFFAA"]
+    ANDfjp [label="AND", shape=box, fillcolor="#AAAAFF"]
+    ANDcjj [label="AND", shape=box, fillcolor="#AAAAFF"]
+    ANDcdr [label="AND", shape=box, fillcolor="#AAAAFF"]
+    XORz07 [label="XOR", fillcolor="#FFAAAA", shape=egg]
+    ORwgw [label="OR", fillcolor="#AAFFAA"]
+    XORz24 [label="XOR", fillcolor="#FFAAAA", shape=egg]
+    ORkmg [label="OR", fillcolor="#AAFFAA"]
+    XORz19 [label="XOR", fillcolor="#FFAAAA", shape=egg]
+    ANDfbq [label="AND", shape=box, fillcolor="#AAAAFF"]
+    ANDcht [label="AND", shape=box, fillcolor="#AAAAFF"]
+    XORz27 [label="XOR", fillcolor="#FFAAAA", shape=egg]
+    ORqqj [label="OR", fillcolor="#AAFFAA"]
+    ANDbsn [label="AND", shape=box, fillcolor="#AAAAFF"]
+    ANDkpd [label="AND", shape=box, fillcolor="#AAAAFF"]
+    XORpjg [label="XOR", fillcolor="#FFAAAA", shape=egg]
+    ANDz05 [label="AND", shape=box, fillcolor="#AAAAFF"]
+    ORdws [label="OR", fillcolor="#AAFFAA"]
+    XORcsp [label="XOR", fillcolor="#FFAAAA", shape=egg]
+    XORz34 [label="XOR", fillcolor="#FFAAAA", shape=egg]
+    ANDvcb [label="AND", shape=box, fillcolor="#AAAAFF"]
+    ANDjwh [label="AND", shape=box, fillcolor="#AAAAFF"]
+    XORz16 [label="XOR", fillcolor="#FFAAAA", shape=egg]
+    ORnpt [label="OR", fillcolor="#AAFFAA"]
+    XORpvq [label="XOR", fillcolor="#FFAAAA", shape=egg]
+    XORz40 [label="XOR", fillcolor="#FFAAAA", shape=egg]
+    XORcwm [label="XOR", fillcolor="#FFAAAA", shape=egg]
+    XORnwp [label="XOR", fillcolor="#FFAAAA", shape=egg]
+    ORjkk [label="OR", fillcolor="#AAFFAA"]
+    ORdpv [label="OR", fillcolor="#AAFFAA"]
+    XORz12 [label="XOR", fillcolor="#FFAAAA", shape=egg]
+    XORz42 [label="XOR", fillcolor="#FFAAAA", shape=egg]
+    XORz43 [label="XOR", fillcolor="#FFAAAA", shape=egg]
+    ANDfhw [label="AND", shape=box, fillcolor="#AAAAFF"]
+    ANDnwf [label="AND", shape=box, fillcolor="#AAAAFF"]
+    ORpgn [label="OR", fillcolor="#AAFFAA"]
+    XORz39 [label="XOR", fillcolor="#FFAAAA", shape=egg]
+    XORwvk [label="XOR", fillcolor="#FFAAAA", shape=egg]
+    ORnfd [label="OR", fillcolor="#AAFFAA"]
+    ANDbqv [label="AND", shape=box, fillcolor="#AAAAFF"]
+    XORz44 [label="XOR", fillcolor="#FFAAAA", shape=egg]
+    XORz35 [label="XOR", fillcolor="#FFAAAA", shape=egg]
+    ORdbp [label="OR", fillcolor="#AAFFAA"]
+    XORpmd [label="XOR", fillcolor="#FFAAAA", shape=egg]
+    XORz32 [label="XOR", fillcolor="#FFAAAA", shape=egg]
+    XORwtf [label="XOR", fillcolor="#FFAAAA", shape=egg]
+    XORz21 [label="XOR", fillcolor="#FFAAAA", shape=egg]
+    ANDkjs [label="AND", shape=box, fillcolor="#AAAAFF"]
+    ANDjgh [label="AND", shape=box, fillcolor="#AAAAFF"]
+    ANDhjc [label="AND", shape=box, fillcolor="#AAAAFF"]
+    XORvtn [label="XOR", fillcolor="#FFAAAA", shape=egg]
+    XORsps [label="XOR", fillcolor="#FFAAAA", shape=egg]
+    XORrhc [label="XOR", fillcolor="#FFAAAA", shape=egg]
+    XORdpt [label="XOR", fillcolor="#FFAAAA", shape=egg]
+    ANDdvg [label="AND", shape=box, fillcolor="#AAAAFF"]
+    ANDrsb [label="AND", shape=box, fillcolor="#AAAAFF"]
+    ORktr [label="OR", fillcolor="#AAFFAA"]
+    ANDqgr [label="AND", shape=box, fillcolor="#AAAAFF"]
+    ANDsvw [label="AND", shape=box, fillcolor="#AAAAFF"]
+    ORcds [label="OR", fillcolor="#AAFFAA"]
+    XORz25 [label="XOR", fillcolor="#FFAAAA", shape=egg]
+    XORjjw [label="XOR", fillcolor="#FFAAAA", shape=egg]
+    ORrdj [label="OR", fillcolor="#AAFFAA"]
+    ORcvh [label="OR", fillcolor="#AAFFAA"]
+    ANDpqd [label="AND", shape=box, fillcolor="#AAAAFF"]
+    XORknv [label="XOR", fillcolor="#FFAAAA", shape=egg]
+    XORz06 [label="XOR", fillcolor="#FFAAAA", shape=egg]
+    XORhnk [label="XOR", fillcolor="#FFAAAA", shape=egg]
+    XORwmk [label="XOR", fillcolor="#FFAAAA", shape=egg]
+    XORz15 [label="XOR", fillcolor="#FFAAAA", shape=egg]
+    XORbrt [label="XOR", fillcolor="#FFAAAA", shape=egg]
+    XORz37 [label="XOR", fillcolor="#FFAAAA", shape=egg]
+    ORmnv [label="OR", fillcolor="#AAFFAA"]
+    ANDcgh [label="AND", shape=box, fillcolor="#AAAAFF"]
+    XORqhs [label="XOR", fillcolor="#FFAAAA", shape=egg]
+    ANDfvp [label="AND", shape=box, fillcolor="#AAAAFF"]
+    ANDfsb [label="AND", shape=box, fillcolor="#AAAAFF"]
+    ORbbh [label="OR", fillcolor="#AAFFAA"]
+    XORnmf [label="XOR", fillcolor="#FFAAAA", shape=egg]
+    ANDpfs [label="AND", shape=box, fillcolor="#AAAAFF"]
+    XORwjn [label="XOR", fillcolor="#FFAAAA", shape=egg]
+    XORtdd [label="XOR", fillcolor="#FFAAAA", shape=egg]
+    ANDbbw [label="AND", shape=box, fillcolor="#AAAAFF"]
+    ANDtfd [label="AND", shape=box, fillcolor="#AAAAFF"]
+    ANDnwb [label="AND", shape=box, fillcolor="#AAAAFF"]
+    XORz09 [label="XOR", fillcolor="#FFAAAA", shape=egg]
+    XORz14 [label="XOR", fillcolor="#FFAAAA", shape=egg]
+    XORz10 [label="XOR", fillcolor="#FFAAAA", shape=egg]
+    ANDkwk [label="AND", shape=box, fillcolor="#AAAAFF"]
+    ANDfqb [label="AND", shape=box, fillcolor="#AAAAFF"]
+    ORcqf [label="OR", fillcolor="#AAFFAA"]
+    ORmdn [label="OR", fillcolor="#AAFFAA"]
+    XORwmq [label="XOR", fillcolor="#FFAAAA", shape=egg]
+    ANDdvp [label="AND", shape=box, fillcolor="#AAAAFF"]
+    XORkmw [label="XOR", fillcolor="#FFAAAA", shape=egg]
+    ANDvhr [label="AND", shape=box, fillcolor="#AAAAFF"]
+    ANDdfd [label="AND", shape=box, fillcolor="#AAAAFF"]
+    ANDvhv [label="AND", shape=box, fillcolor="#AAAAFF"]
+    ORvfj [label="OR", fillcolor="#AAFFAA"]
+    ORvgk [label="OR", fillcolor="#AAFFAA"]
+    XORz01 [label="XOR", fillcolor="#FFAAAA", shape=egg]
+    XORz03 [label="XOR", fillcolor="#FFAAAA", shape=egg]
+    XORfjq [label="XOR", fillcolor="#FFAAAA", shape=egg]
+    ANDtpn [label="AND", shape=box, fillcolor="#AAAAFF"]
+    ANDsjc [label="AND", shape=box, fillcolor="#AAAAFF"]
+    ANDtbh [label="AND", shape=box, fillcolor="#AAAAFF"]
+    XORz20 [label="XOR", fillcolor="#FFAAAA", shape=egg]
+    ORqdp [label="OR", fillcolor="#AAFFAA"]
+    ANDhfw [label="AND", shape=box, fillcolor="#AAAAFF"]
+    XORjpf [label="XOR", fillcolor="#FFAAAA", shape=egg]
+    XORz26 [label="XOR", fillcolor="#FFAAAA", shape=egg]
+    XORdcr [label="XOR", fillcolor="#FFAAAA", shape=egg]
+    ANDjfh [label="AND", shape=box, fillcolor="#AAAAFF"]
+    ORhhc [label="OR", fillcolor="#AAFFAA"]
+    ORpvb [label="OR", fillcolor="#AAFFAA"]
+    ANDrcg [label="AND", shape=box, fillcolor="#AAAAFF"]
+    ANDnpm [label="AND", shape=box, fillcolor="#AAAAFF"]
+    ANDhvm [label="AND", shape=box, fillcolor="#AAAAFF"]
+    ORqcs [label="OR", fillcolor="#AAFFAA"]
+    XORtst [label="XOR", fillcolor="#FFAAAA", shape=egg]
+    ANDjmk [label="AND", shape=box, fillcolor="#AAAAFF"]
+    ANDtff [label="AND", shape=box, fillcolor="#AAAAFF"]
+    XORz00 [label="XOR", fillcolor="#FFAAAA", shape=egg]
+    ANDmkq [label="AND", shape=box, fillcolor="#AAAAFF"]
+    XORssd [label="XOR", fillcolor="#FFAAAA", shape=egg]
+    XORz33 [label="XOR", fillcolor="#FFAAAA", shape=egg]
+    ANDqdm [label="AND", shape=box, fillcolor="#AAAAFF"]
+    ANDfdv [label="AND", shape=box, fillcolor="#AAAAFF"]
+    ANDmck [label="AND", shape=box, fillcolor="#AAAAFF"]
+    XORz02 [label="XOR", fillcolor="#FFAAAA", shape=egg]
+    ORckj [label="OR", fillcolor="#AAFFAA"]
+    XORz30 [label="XOR", fillcolor="#FFAAAA", shape=egg]
+    ORcvd [label="OR", fillcolor="#AAFFAA"]
+    ORgcd [label="OR", fillcolor="#AAFFAA"]
+    XORz17 [label="XOR", fillcolor="#FFAAAA", shape=egg]
+    ANDkqd [label="AND", shape=box, fillcolor="#AAAAFF"]
+    ORvmr [label="OR", fillcolor="#AAFFAA"]
+    XORz08 [label="XOR", fillcolor="#FFAAAA", shape=egg]
+    ORpwv [label="OR", fillcolor="#AAFFAA"]
+    ANDfnw [label="AND", shape=box, fillcolor="#AAAAFF"]
+    ORrhn [label="OR", fillcolor="#AAFFAA"]
+    XORwhw [label="XOR", fillcolor="#FFAAAA", shape=egg]
+    ANDtdf [label="AND", shape=box, fillcolor="#AAAAFF"]
+    ANDfnf [label="AND", shape=box, fillcolor="#AAAAFF"]
+    XORz28 [label="XOR", fillcolor="#FFAAAA", shape=egg]
+    XORz13 [label="XOR", fillcolor="#FFAAAA", shape=egg]
+    ANDjmm [label="AND", shape=box, fillcolor="#AAAAFF"]
+    ANDrds [label="AND", shape=box, fillcolor="#AAAAFF"]
+    ORbvk [label="OR", fillcolor="#AAFFAA"]
+    XORchk [label="XOR", fillcolor="#FFAAAA", shape=egg]
+    ANDwpn [label="AND", shape=box, fillcolor="#AAAAFF"]
+    XORvdr [label="XOR", fillcolor="#FFAAAA", shape=egg]
+    ANDgnj [label="AND", shape=box, fillcolor="#AAAAFF"]
+    ANDhhh [label="AND", shape=box, fillcolor="#AAAAFF"]
+    XORz38 [label="XOR", fillcolor="#FFAAAA", shape=egg]
+    XORrhf [label="XOR", fillcolor="#FFAAAA", shape=egg]
+    ANDhgs [label="AND", shape=box, fillcolor="#AAAAFF"]
+    ANDhdr [label="AND", shape=box, fillcolor="#AAAAFF"]
+    ANDjpn [label="AND", shape=box, fillcolor="#AAAAFF"]
+    XORqfh [label="XOR", fillcolor="#FFAAAA", shape=egg]
+    ANDcwh [label="AND", shape=box, fillcolor="#AAAAFF"]
+    ORgdq [label="OR", fillcolor="#AAFFAA"]
+    ANDmnt [label="AND", shape=box, fillcolor="#AAAAFF"]
+    ORpwc [label="OR", fillcolor="#AAFFAA"]
+
+    bbh [shape=point]
+    bbw [shape=point]
+    bjj [shape=point]
+    bmt [shape=point]
+    bqv [shape=point]
+    brt [shape=point]
+    brw [shape=point]
+    bsn [shape=point]
+    bvk [shape=point]
+    cbq [shape=point]
+    cdr [shape=point]
+    cds [shape=point]
+    cgh [shape=point]
+    chk [shape=point]
+    cht [shape=point]
+    cjj [shape=point]
+    ckj [shape=point]
+    cnh [shape=point]
+    cqf [shape=point]
+    crq [shape=point]
+    csc [shape=point]
+    csp [shape=point]
+    cvd [shape=point]
+    cvh [shape=point]
+    cwh [shape=point]
+    cwm [shape=point]
+    dbp [shape=point]
+    dcr [shape=point]
+    dfd [shape=point]
+    djd [shape=point]
+    dpt [shape=point]
+    dpv [shape=point]
+    dvg [shape=point]
+    dvp [shape=point]
+    dws [shape=point]
+    fbq [shape=point]
+    fdv [shape=point]
+    fhw [shape=point]
+    fjp [shape=point]
+    fjq [shape=point]
+    fnf [shape=point]
+    fnw [shape=point]
+    fph [shape=point]
+    fqb [shape=point]
+    fqc [shape=point]
+    fqr [shape=point]
+    frt [shape=point]
+    frw [shape=point]
+    fsb [shape=point]
+    fvp [shape=point]
+    gcd [shape=point]
+    gdq [shape=point]
+    gjp [shape=point]
+    gmg [shape=point]
+    gnj [shape=point]
+    hdr [shape=point]
+    hfh [shape=point]
+    hfw [shape=point]
+    hgs [shape=point]
+    hhc [shape=point]
+    hhh [shape=point]
+    hjc [shape=point]
+    hjh [shape=point]
+    hkc [shape=point]
+    hnk [shape=point]
+    hvm [shape=point]
+    jfh [shape=point]
+    jgh [shape=point]
+    jjw [shape=point]
+    jkk [shape=point]
+    jkm [shape=point]
+    jkv [shape=point]
+    jmk [shape=point]
+    jmm [shape=point]
+    jpf [shape=point]
+    jpn [shape=point]
+    jth [shape=point]
+    jwh [shape=point]
+    kdt [shape=point]
+    khg [shape=point]
+    kjs [shape=point]
+    kmg [shape=point]
+    kmw [shape=point]
+    knv [shape=point]
+    kpd [shape=point]
+    kqd [shape=point]
+    ktr [shape=point]
+    kwk [shape=point]
+    mck [shape=point]
+    mdn [shape=point]
+    mhg [shape=point]
+    mjq [shape=point]
+    mkq [shape=point]
+    mnt [shape=point]
+    mnv [shape=point]
+    mtm [shape=point]
+    nbf [shape=point]
+    nfd [shape=point]
+    ngh [shape=point]
+    njb [shape=point]
+    njs [shape=point]
+    nkv [shape=point]
+    nmf [shape=point]
+    npm [shape=point]
+    npt [shape=point]
+    ntn [shape=point]
+    nwb [shape=point]
+    nwf [shape=point]
+    nwp [shape=point]
+    pfs [shape=point]
+    pgn [shape=point]
+    pjg [shape=point]
+    pmd [shape=point]
+    ppk [shape=point]
+    pqd [shape=point]
+    pvb [shape=point]
+    pvd [shape=point]
+    pvq [shape=point]
+    pwc [shape=point]
+    pwv [shape=point]
+    qcb [shape=point]
+    qcs [shape=point]
+    qdm [shape=point]
+    qdp [shape=point]
+    qfh [shape=point]
+    qgm [shape=point]
+    qgr [shape=point]
+    qhs [shape=point]
+    qqj [shape=point]
+    qrk [shape=point]
+    qwq [shape=point]
+    rcg [shape=point]
+    rdj [shape=point]
+    rds [shape=point]
+    rhc [shape=point]
+    rhf [shape=point]
+    rhn [shape=point]
+    rkd [shape=point]
+    rrr [shape=point]
+    rsb [shape=point]
+    sdc [shape=point]
+    sjc [shape=point]
+    sps [shape=point]
+    ssd [shape=point]
+    svw [shape=point]
+    tbh [shape=point]
+    tdd [shape=point]
+    tdf [shape=point]
+    tfd [shape=point]
+    tff [shape=point]
+    tpd [shape=point]
+    tpn [shape=point]
+    tst [shape=point]
+    vcb [shape=point]
+    vdg [shape=point]
+    vdr [shape=point]
+    vfj [shape=point]
+    vgk [shape=point]
+    vhr [shape=point]
+    vhv [shape=point]
+    vmr [shape=point]
+    vsr [shape=point]
+    vtn [shape=point]
+    wbk [shape=point]
+    wgw [shape=point]
+    whw [shape=point]
+    wjn [shape=point]
+    wjp [shape=point]
+    wmj [shape=point]
+    wmk [shape=point]
+    wmq [shape=point]
+    wpn [shape=point]
+    wrh [shape=point]
+    wrs [shape=point]
+    wtf [shape=point]
+    wvk [shape=point]
+
+    x00 -> ANDwrs
+    y00 -> ANDwrs -> wrs
+    y35 -> XORcbq
+    x35 -> XORcbq -> cbq
+    y19 -> XORsdc
+    x19 -> XORsdc -> sdc
+    dpv -> ANDtpd
+    cwm -> ANDtpd -> tpd
+    x01 -> ANDrkd
+    y01 -> ANDrkd -> rkd
+    vcb -> ORgmg
+    frw -> ORgmg -> gmg
+    x32 -> XORwrh
+    y32 -> XORwrh -> wrh
+    kmw -> ANDcrq
+    gdq -> ANDcrq -> crq
+    y44 -> ANDnkv
+    x44 -> ANDnkv -> nkv
+    gnj -> ORjkv
+    frt -> ORjkv -> jkv
+    y32 -> ANDqrk
+    x32 -> ANDqrk -> qrk
+    x08 -> ANDfqc
+    y08 -> ANDfqc -> fqc
+    x44 -> XORnbf
+    y44 -> XORnbf -> nbf
+    y02 -> ANDhjh
+    x02 -> ANDhjh -> hjh
+    y13 -> ANDnjs
+    x13 -> ANDnjs -> njs
+    hjc -> ORmjq
+    kpd -> ORmjq -> mjq
+    jkv -> ANDqwq
+    dcr -> ANDqwq -> qwq
+    jpf -> XORz41
+    qqj -> XORz41 -> z41
+    x27 -> XORppk
+    y27 -> XORppk -> ppk
+    kmw -> XORz22
+    gdq -> XORz22 -> z22
+    pjg -> XORfrt
+    kmg -> XORfrt -> frt
+    rdj -> ANDmhg
+    wtf -> ANDmhg -> mhg
+    rhf -> ANDntn
+    cvh -> ANDntn -> ntn
+    nkv -> ORz45
+    wmj -> ORz45 -> z45
+    tff -> ORz11
+    rrr -> ORz11 -> z11
+    pwc -> ANDfrw
+    jjw -> ANDfrw -> frw
+    x09 -> ANDbjj
+    y09 -> ANDbjj -> bjj
+    y04 -> XORjth
+    x04 -> XORjth -> jth
+    npm -> ORwbk
+    mkq -> ORwbk -> wbk
+    bbw -> ORvdg
+    cht -> ORvdg -> vdg
+    bmt -> ANDpvd
+    jkm -> ANDpvd -> pvd
+    qdp -> ANDnjb
+    sdc -> ANDnjb -> njb
+    x11 -> ANDrrr
+    y11 -> ANDrrr -> rrr
+    kmg -> ANDz23
+    pjg -> ANDz23 -> z23
+    y12 -> XORfqr
+    x12 -> XORfqr -> fqr
+    x03 -> XORfph
+    y03 -> XORfph -> fph
+    rhn -> XORz31
+    fjq -> XORz31 -> z31
+    y08 -> XORgjp
+    x08 -> XORgjp -> gjp
+    y19 -> ANDkdt
+    x19 -> ANDkdt -> kdt
+    gjp -> ANDdjd
+    dws -> ANDdjd -> djd
+    y14 -> XORkhg
+    x14 -> XORkhg -> khg
+    tst -> ORjkm
+    hvm -> ORjkm -> jkm
+    x42 -> XORhfh
+    y42 -> XORhfh -> hfh
+    nwb -> ORcnh
+    mhg -> ORcnh -> cnh
+    gmg -> ANDwmj
+    nbf -> ANDwmj -> wmj
+    y16 -> ANDngh
+    x16 -> ANDngh -> ngh
+    x41 -> ANDmtm
+    y41 -> ANDmtm -> mtm
+    y04 -> ANDqgm
+    x04 -> ANDqgm -> qgm
+    y06 -> XORbmt
+    x06 -> XORbmt -> bmt
+    x07 -> XORqcb
+    y07 -> XORqcb -> qcb
+    x37 -> ANDbrw
+    y37 -> ANDbrw -> brw
+    knv -> XORz36
+    wjp -> XORz36 -> z36
+    jth -> ANDcsc
+    bbh -> ANDcsc -> csc
+    kwk -> ORhkc
+    vhr -> ORhkc -> hkc
+    jth -> XORz04
+    bbh -> XORz04 -> z04
+    nfd -> XORz18
+    pvq -> XORz18 -> z18
+    dbp -> XORz29
+    dpt -> XORz29 -> z29
+    pgn -> ANDvsr
+    qcb -> ANDvsr -> vsr
+    fbq -> ORwjp
+    fhw -> ORwjp -> wjp
+    x15 -> ANDfjp
+    y15 -> ANDfjp -> fjp
+    x24 -> ANDcjj
+    y24 -> ANDcjj -> cjj
+    ktr -> ANDcdr
+    ssd -> ANDcdr -> cdr
+    qcb -> XORz07
+    pgn -> XORz07 -> z07
+    mtm -> ORwgw
+    jmm -> ORwgw -> wgw
+    jkv -> XORz24
+    dcr -> XORz24 -> z24
+    pfs -> ORkmg
+    crq -> ORkmg -> kmg
+    sdc -> XORz19
+    qdp -> XORz19 -> z19
+    cbq -> ANDfbq
+    hhc -> ANDfbq -> fbq
+    fjq -> ANDcht
+    rhn -> ANDcht -> cht
+    ppk -> XORz27
+    qcs -> XORz27 -> z27
+    pqd -> ORqqj
+    rsb -> ORqqj -> qqj
+    y12 -> ANDbsn
+    x12 -> ANDbsn -> bsn
+    y27 -> ANDkpd
+    x27 -> ANDkpd -> kpd
+    x23 -> XORpjg
+    y23 -> XORpjg -> pjg
+    x05 -> ANDz05
+    y05 -> ANDz05 -> z05
+    vsr -> ORdws
+    bqv -> ORdws -> dws
+    x17 -> XORcsp
+    y17 -> XORcsp -> csp
+    mdn -> XORz34
+    chk -> XORz34 -> z34
+    x43 -> ANDvcb
+    y43 -> ANDvcb -> vcb
+    ckj -> ANDjwh
+    wvk -> ANDjwh -> jwh
+    rhc -> XORz16
+    vfj -> XORz16 -> z16
+    tpn -> ORnpt
+    tdf -> ORnpt -> npt
+    x18 -> XORpvq
+    y18 -> XORpvq -> pvq
+    hnk -> XORz40
+    cnh -> XORz40 -> z40
+    x37 -> XORcwm
+    y37 -> XORcwm -> cwm
+    x33 -> XORnwp
+    y33 -> XORnwp -> nwp
+    hdr -> ORjkk
+    ngh -> ORjkk -> jkk
+    fqb -> ORdpv
+    hhh -> ORdpv -> dpv
+    sps -> XORz12
+    fqr -> XORz12 -> z12
+    hfh -> XORz42
+    wgw -> XORz42 -> z42
+    jjw -> XORz43
+    pwc -> XORz43 -> z43
+    x35 -> ANDfhw
+    y35 -> ANDfhw -> fhw
+    x42 -> ANDnwf
+    y42 -> ANDnwf -> nwf
+    pvd -> ORpgn
+    rcg -> ORpgn -> pgn
+    wtf -> XORz39
+    rdj -> XORz39 -> z39
+    y25 -> XORwvk
+    x25 -> XORwvk -> wvk
+    kjs -> ORnfd
+    rds -> ORnfd -> nfd
+    x07 -> ANDbqv
+    y07 -> ANDbqv -> bqv
+    gmg -> XORz44
+    nbf -> XORz44 -> z44
+    hhc -> XORz35
+    cbq -> XORz35 -> z35
+    hfw -> ORdbp
+    jfh -> ORdbp -> dbp
+    x38 -> XORpmd
+    y38 -> XORpmd -> pmd
+    vdg -> XORz32
+    wrh -> XORz32 -> z32
+    y39 -> XORwtf
+    x39 -> XORwtf -> wtf
+    wbk -> XORz21
+    qfh -> XORz21 -> z21
+    csp -> ANDkjs
+    jkk -> ANDkjs -> kjs
+    x26 -> ANDjgh
+    y26 -> ANDjgh -> jgh
+    ppk -> ANDhjc
+    qcs -> ANDhjc -> hjc
+    x05 -> XORvtn
+    y05 -> XORvtn -> vtn
+    hkc -> XORsps
+    tdd -> XORsps -> sps
+    y16 -> XORrhc
+    x16 -> XORrhc -> rhc
+    x29 -> XORdpt
+    y29 -> XORdpt -> dpt
+    y21 -> ANDdvg
+    x21 -> ANDdvg -> dvg
+    y40 -> ANDrsb
+    x40 -> ANDrsb -> rsb
+    tfd -> ORktr
+    rkd -> ORktr -> ktr
+    vdg -> ANDqgr
+    wrh -> ANDqgr -> qgr
+    qfh -> ANDsvw
+    wbk -> ANDsvw -> svw
+    vhv -> ORcds
+    bjj -> ORcds -> cds
+    ckj -> XORz25
+    wvk -> XORz25 -> z25
+    x43 -> XORjjw
+    y43 -> XORjjw -> jjw
+    fsb -> ORrdj
+    pmd -> ORrdj -> rdj
+    jwh -> ORcvh
+    mnt -> ORcvh -> cvh
+    hnk -> ANDpqd
+    cnh -> ANDpqd -> pqd
+    x36 -> XORknv
+    y36 -> XORknv -> knv
+    jkm -> XORz06
+    bmt -> XORz06 -> z06
+    y40 -> XORhnk
+    x40 -> XORhnk -> hnk
+    x09 -> XORwmk
+    y09 -> XORwmk -> wmk
+    wjn -> XORz15
+    cqf -> XORz15 -> z15
+    x30 -> XORbrt
+    y30 -> XORbrt -> brt
+    dpv -> XORz37
+    cwm -> XORz37 -> z37
+    njb -> ORmnv
+    kdt -> ORmnv -> mnv
+    y38 -> ANDcgh
+    x38 -> ANDcgh -> cgh
+    x28 -> XORqhs
+    y28 -> XORqhs -> qhs
+    wgw -> ANDfvp
+    hfh -> ANDfvp -> fvp
+    gcd -> ANDfsb
+    cgh -> ANDfsb -> fsb
+    fnf -> ORbbh
+    wpn -> ORbbh -> bbh
+    x20 -> XORnmf
+    y20 -> XORnmf -> nmf
+    y22 -> ANDpfs
+    x22 -> ANDpfs -> pfs
+    y15 -> XORwjn
+    x15 -> XORwjn -> wjn
+    x11 -> XORtdd
+    y11 -> XORtdd -> tdd
+    x31 -> ANDbbw
+    y31 -> ANDbbw -> bbw
+    wmq -> ANDtfd
+    wrs -> ANDtfd -> tfd
+    x39 -> ANDnwb
+    y39 -> ANDnwb -> nwb
+    wmk -> XORz09
+    cvd -> XORz09 -> z09
+    vgk -> XORz14
+    khg -> XORz14 -> z14
+    cds -> XORz10
+    vdr -> XORz10 -> z10
+    y10 -> ANDkwk
+    x10 -> ANDkwk -> kwk
+    wjp -> ANDfqb
+    knv -> ANDfqb -> fqb
+    mck -> ORcqf
+    tbh -> ORcqf -> cqf
+    dfd -> ORmdn
+    qdm -> ORmdn -> mdn
+    y01 -> XORwmq
+    x01 -> XORwmq -> wmq
+    nfd -> ANDdvp
+    pvq -> ANDdvp -> dvp
+    x22 -> XORkmw
+    y22 -> XORkmw -> kmw
+    vdr -> ANDvhr
+    cds -> ANDvhr -> vhr
+    pwv -> ANDdfd
+    nwp -> ANDdfd -> dfd
+    cvd -> ANDvhv
+    wmk -> ANDvhv -> vhv
+    fjp -> ORvfj
+    fdv -> ORvfj -> vfj
+    njs -> ORvgk
+    hgs -> ORvgk -> vgk
+    wmq -> XORz01
+    wrs -> XORz01 -> z01
+    fph -> XORz03
+    vmr -> XORz03 -> z03
+    x31 -> XORfjq
+    y31 -> XORfjq -> fjq
+    y29 -> ANDtpn
+    x29 -> ANDtpn -> tpn
+    x18 -> ANDsjc
+    y18 -> ANDsjc -> sjc
+    khg -> ANDtbh
+    vgk -> ANDtbh -> tbh
+    mnv -> XORz20
+    nmf -> XORz20 -> z20
+    sjc -> ORqdp
+    dvp -> ORqdp -> qdp
+    qhs -> ANDhfw
+    mjq -> ANDhfw -> hfw
+    x41 -> XORjpf
+    y41 -> XORjpf -> jpf
+    cvh -> XORz26
+    rhf -> XORz26 -> z26
+    y24 -> XORdcr
+    x24 -> XORdcr -> dcr
+    y28 -> ANDjfh
+    x28 -> ANDjfh -> jfh
+    jmk -> ORhhc
+    kqd -> ORhhc -> hhc
+    csc -> ORpvb
+    qgm -> ORpvb -> pvb
+    x06 -> ANDrcg
+    y06 -> ANDrcg -> rcg
+    nmf -> ANDnpm
+    mnv -> ANDnpm -> npm
+    vtn -> ANDhvm
+    pvb -> ANDhvm -> hvm
+    ntn -> ORqcs
+    jgh -> ORqcs -> qcs
+    pvb -> XORtst
+    vtn -> XORtst -> tst
+    x34 -> ANDjmk
+    y34 -> ANDjmk -> jmk
+    hkc -> ANDtff
+    tdd -> ANDtff -> tff
+    y00 -> XORz00
+    x00 -> XORz00 -> z00
+    y20 -> ANDmkq
+    x20 -> ANDmkq -> mkq
+    x02 -> XORssd
+    y02 -> XORssd -> ssd
+    pwv -> XORz33
+    nwp -> XORz33 -> z33
+    y33 -> ANDqdm
+    x33 -> ANDqdm -> qdm
+    wjn -> ANDfdv
+    cqf -> ANDfdv -> fdv
+    y14 -> ANDmck
+    x14 -> ANDmck -> mck
+    ktr -> XORz02
+    ssd -> XORz02 -> z02
+    qwq -> ORckj
+    cjj -> ORckj -> ckj
+    npt -> XORz30
+    brt -> XORz30 -> z30
+    djd -> ORcvd
+    fqc -> ORcvd -> cvd
+    brw -> ORgcd
+    tpd -> ORgcd -> gcd
+    jkk -> XORz17
+    csp -> XORz17 -> z17
+    mdn -> ANDkqd
+    chk -> ANDkqd -> kqd
+    cdr -> ORvmr
+    hjh -> ORvmr -> vmr
+    gjp -> XORz08
+    dws -> XORz08 -> z08
+    qgr -> ORpwv
+    qrk -> ORpwv -> pwv
+    x30 -> ANDfnw
+    y30 -> ANDfnw -> fnw
+    jpn -> ORrhn
+    fnw -> ORrhn -> rhn
+    x13 -> XORwhw
+    y13 -> XORwhw -> whw
+    dbp -> ANDtdf
+    dpt -> ANDtdf -> tdf
+    fph -> ANDfnf
+    vmr -> ANDfnf -> fnf
+    qhs -> XORz28
+    mjq -> XORz28 -> z28
+    whw -> XORz13
+    bvk -> XORz13 -> z13
+    jpf -> ANDjmm
+    qqj -> ANDjmm -> jmm
+    y17 -> ANDrds
+    x17 -> ANDrds -> rds
+    bsn -> ORbvk
+    cwh -> ORbvk -> bvk
+    x34 -> XORchk
+    y34 -> XORchk -> chk
+    x03 -> ANDwpn
+    y03 -> ANDwpn -> wpn
+    x10 -> XORvdr
+    y10 -> XORvdr -> vdr
+    y23 -> ANDgnj
+    x23 -> ANDgnj -> gnj
+    y36 -> ANDhhh
+    x36 -> ANDhhh -> hhh
+    cgh -> XORz38
+    gcd -> XORz38 -> z38
+    x26 -> XORrhf
+    y26 -> XORrhf -> rhf
+    bvk -> ANDhgs
+    whw -> ANDhgs -> hgs
+    vfj -> ANDhdr
+    rhc -> ANDhdr -> hdr
+    brt -> ANDjpn
+    npt -> ANDjpn -> jpn
+    y21 -> XORqfh
+    x21 -> XORqfh -> qfh
+    sps -> ANDcwh
+    fqr -> ANDcwh -> cwh
+    svw -> ORgdq
+    dvg -> ORgdq -> gdq
+    y25 -> ANDmnt
+    x25 -> ANDmnt -> mnt
+    nwf -> ORpwc
+    fvp -> ORpwc -> pwc
+}

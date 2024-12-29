@@ -28,10 +28,13 @@ auto operator<<(ostream &stream, set<T> const &p) -> ostream & {
     }
 
     stream << "{";
-    for (auto &&i : p) {
-        cout << i << ", ";
+    for (auto it = p.begin(); it != p.end();) {
+        stream << *it;
+        if (++it != p.end()) {
+            stream << ", ";
+        }
     }
-    cout << "\b\b" << "}";
+    stream << "}";
 
     return stream;
 }
@@ -44,10 +47,13 @@ auto operator<<(ostream &stream, vector<T> const &p) -> ostream & {
     }
 
     stream << "[";
-    for (auto &&i : p) {
-        cout << i << ", ";
+    for (auto it = p.begin(); it != p.end();) {
+        stream << *it;
+        if (++it != p.end()) {
+            stream << ", ";
+        }
     }
-    cout << "\b\b" << "]";
+    stream << "]";
 
     return stream;
 }
@@ -60,9 +66,12 @@ auto operator<<(ostream &stream, map<T, Y> const &p) -> ostream & {
     }
 
     stream << "{";
-    for (auto &&i : p) {
-        cout << i << ", ";
+    for (auto it = p.begin(); it != p.end();) {
+        stream << *it;
+        if (++it != p.end()) {
+            stream << ", ";
+        }
     }
-    cout << "\b\b" << "}";
+    stream << "}";
     return stream;
 }
