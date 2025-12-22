@@ -1,23 +1,29 @@
-var joltage = 0
+func biggestDigit(s: String, leave: Int, acc: String = "") -> String {
+    let cutoff = s.count - leave
+    var res = (i: 0, digit: 0)
 
-while let line = readLine() {
+    for (i, c) in s.enumerated() {
+        if i >= cutoff { break }
 
-    // let chars = line.map(String.init)
-    // var i = 0, j = 0
-    // while j < chars.count {
-    //     let c = Int(chars[0])!
-    // }
-    var biggest = 0
-    for (i, c1) in line.enumerated() {
-        for (j, c2) in line.enumerated() {
-            if j <= i { continue }
-            let d1 = c1.wholeNumberValue! * 10
-            let d2 = c2.wholeNumberValue!
-            biggest = max(biggest, d1 + d2)
+        let digit = c.wholeNumberValue!
+        if digit > res.digit {
+            res = (i, digit)
         }
     }
 
-    joltage += biggest
+    let newS = String(s.dropFirst(res.i + 1))
+    let newAcc = acc + String(res.digit)
+
+    if leave > 0 {
+        return biggestDigit(s: newS, leave: leave - 1, acc: newAcc)
+    } else {
+        return newAcc
+    }
 }
 
-print(joltage)
+var total = 0
+while let line = readLine() {
+    let res = Int(biggestDigit(s: line, leave: 11))!
+    total += res
+}
+print(total)
