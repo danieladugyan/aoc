@@ -1,7 +1,7 @@
 let d = [-1, 0, 1]
-var m: [String] = []
+var m: [[Character]] = []
 while let line = readLine() {
-    m.append(line)
+    m.append(Array(line))
 }
 let rows = m.count
 let cols = m[0].count
@@ -16,22 +16,28 @@ func countNeighbours(at: (x: Int, y: Int)) -> Int {
             if y < 0 || y >= rows { continue }
             if dx == 0 && dy == 0 { continue }
 
-            let start = m[y].startIndex
-            let target = m[y].index(start, offsetBy: x)
-            if m[y][target] == "@" { n += 1 }
+            if m[y][x] == "@" { n += 1 }
         }
     }
     return n
 }
 
 var total = 0
-for (y, row) in m.enumerated() {
-    for (x, c) in row.enumerated() {
-        if c == "." { continue }
-        if countNeighbours(at: (x: x, y: y)) < 4 {
-            total += 1
+var removed = 0
+
+repeat {
+    removed = 0
+    for (y, row) in m.enumerated() {
+        for (x, c) in row.enumerated() {
+            if c == "." { continue }
+
+            if countNeighbours(at: (x: x, y: y)) < 4 {
+                removed += 1
+                m[y][x] = "."
+            }
         }
     }
-}
+    total += removed
+} while removed > 0
 
 print(total)
