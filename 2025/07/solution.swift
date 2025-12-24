@@ -12,31 +12,29 @@ func inBounds(_ p: Pos) -> Bool {
     return 0 <= p.row && p.row < diagram.count && 0 <= p.col && p.col < diagram[0].count
 }
 
-var q = Set<Pos>()
-q.insert(Pos(row: 0, col: diagram[0].firstIndex(of: "S")!))
-var splits = Set<Pos>()
-while !q.isEmpty {
-    let p = q.popFirst()!
-    diagram[p.row][p.col] = "|"
+var cache: [Pos: Int] = [:]
+
+func recurse(p: Pos, acc: Int) -> Int {
+    if let x = cache[p] {
+        return x
+    }
 
     let p2 = Pos(row: p.row + 1, col: p.col)
     if !inBounds(p2) {
-        continue
+        return acc + 1
     } else if diagram[p2.row][p2.col] == "^" {
         let pl = Pos(row: p2.row, col: p2.col - 1)
         let pr = Pos(row: p2.row, col: p2.col + 1)
-        let (inserted, _) = splits.insert(p2)
-        if inserted {
-            q.insert(pl)
-            q.insert(pr)
-        }
+        let l = recurse(p: pl, acc: acc)
+        let r = recurse(p: pr, acc: acc)
+        cache[pl] = l
+        cache[pr] = r
+        return l + r
     } else {
-        q.insert(p2)
+        let a = recurse(p: p2, acc: acc)
+        cache[p2] = a
+        return a
     }
-
 }
 
-// for line in diagram {
-//     print(String(line))
-// }
-print(splits.count)
+print(recurse(p: Pos(row: 0, col: diagram[0].firstIndex(of: "S")!), acc: 0))
