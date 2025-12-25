@@ -66,7 +66,7 @@ while let line = readLine() {
             .filter({ $0.0 > 0 })
 
         for (_, button) in rankedButtons {
-            let entry = Entry(lights: lights, button: button)
+            let entry = Entry(lights: state, button: button)
 
             if !history.contains(entry) {
                 let newState = state.symmetricDifference(button)
