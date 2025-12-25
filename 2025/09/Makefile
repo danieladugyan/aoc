@@ -1,5 +1,5 @@
 compile:
-	swiftc solution.swift -o solution.exe
+	swiftc solution.swift -o solution.exe -O
 
 solve: compile
 	./solution.exe < input.txt
