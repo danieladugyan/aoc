@@ -35,9 +35,6 @@ func union(_ p1: Pos, _ p2: Pos) {
     let r2 = find(p2)
 
     edges[r1] = r2
-
-    // print("UNION \(p1.x) -> \(p2.x)")
-    // print("\t \(r1.x) -> \(r2.x)")
 }
 
 func find(_ p: Pos) -> Pos {
@@ -50,35 +47,17 @@ func find(_ p: Pos) -> Pos {
     return q
 }
 
-// let N = 10
-let N = 1000
-
-// Make N shortest connections
-for i in 0..<N {
-    let (_, p1, p2) = closest[i]
+// Make connections until all connected
+for (_, p1, p2) in closest {
     union(p1, p2)
-}
 
-// Compress paths
-for (k, v) in edges {
-    if k == v { continue }
-    let _ = find(k)
-}
-
-// Get set sizes
-var sizes: [Pos: Int] = [:]
-for (k, v) in edges {
-    if k == v { continue }
+    // Compress
+    for p in points {
+        let _ = find(p)
+    }
     
-    if let size = sizes[v] {
-        sizes[v] = size + 1
-    } else {
-        sizes[v] = 2
+    if Set(edges.values).count == 1 {
+        print(p1.x * p2.x)
+        break
     }
 }
-
-var answer = 1
-for v in sizes.values.sorted(by: >).prefix(3) {
-    answer *= v
-}
-print(answer)
