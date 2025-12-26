@@ -1,3 +1,8 @@
+struct CacheKey: Hashable {
+    let v: Set<String>
+    let n: String
+}
+
 var edges: [String: [String]] = [:]
 
 while let line = readLine() {
@@ -7,17 +12,38 @@ while let line = readLine() {
     edges[from] = to
 }
 
-var paths = 0
-func recurse(n: String) {
+var visited: Set<String> = []
+var cache: [CacheKey: Int] = [:]
+func recurse(n: String, paths: Int = 0) -> Int {
     if n == "out" {
-        paths += 1
-        return
+        if visited.contains("dac") && visited.contains("fft") {
+            return paths + 1
+        }
+
+        return paths
     }
 
+    var sum = paths
     for next in edges[n]! {
-        recurse(n: next)
+        let key = CacheKey(v: visited, n: next)
+        if let x = cache[key] {
+            sum += x
+            continue
+        }
+
+        if next == "dac" || next == "fft" {
+            visited.insert(next)
+        }
+        let res = recurse(n: next)
+        if next == "dac" || next == "fft" {
+            visited.remove(next)
+        }
+
+        cache[key] = res
+        sum += res
     }
+
+    return sum
 }
 
-recurse(n: "you")
-print(paths)
+print(recurse(n: "svr"))
