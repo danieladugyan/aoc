@@ -8,7 +8,7 @@
 // Never perform the same action for the same state twice.
 
 struct Entry: Hashable {
-    let lights: Set<Int>
+    let state: [Int]
     let button: Set<Int>
 }
 
@@ -16,17 +16,9 @@ var answer = 0
 while let line = readLine() {
     var parts = line.split(separator: " ")
 
-    let lights: Set<Int> = Set(
-        parts
-            .removeFirst()
-            .dropFirst()
-            .dropLast()
-            .enumerated()
-            .filter { $0.element == "#" }
-            .map { $0.offset }
-    )
+    let _ = parts.removeFirst()
 
-    let _ =
+    let joltage =
         parts
         .removeLast()
         .dropFirst()
@@ -43,19 +35,30 @@ while let line = readLine() {
 
     print(line)
 
-    func greedy(state: Set<Int>, clicks: Int) {
-        let toggle = state.symmetricDifference(lights)
+    func greedy(state: [Int], clicks: Int) {
+        // Abort if we've already found a better solution
+        if clicks + 1 >= total { return }
+
+        // Compute diff for every counter
+        let diff = state.enumerated().map({ joltage[$0.offset] - $0.element })
+
         // print(
-        //     String(repeating: " ", count: clicks), "\(clicks) | on = \(state), remaining \(toggle)")
+        //     String(repeating: " ", count: clicks), "\(clicks) | counters = \(state), remaining \(diff)")
 
         // Solution found, save total clicks and backtrack.
-        if lights == state {
+        if diff.allSatisfy({ $0 == 0 }) {
             total = min(total, clicks)
             return
         }
 
-        // Abort if we've already found a better solution
-        if clicks + 1 >= total { return }
+        // Otherwise, find a button that increments ONLY needed counters
+        // idx is a set of all counter indices that need to count up more
+        let idx = Set(diff.enumerated().filter { $0.element > 0 }.map { $0.offset })
+
+        // let rankedButtons = buttons.compactMap {
+        //     if !$0.isSubset(of: idx) { return nil }
+        //     return (idx.intersection($0).count, $0)
+        // }
 
         let rankedButtons =
             buttons
@@ -65,23 +68,24 @@ while let line = readLine() {
             })
             .filter({ $0.0 > 0 })
 
-        for (_, button) in rankedButtons {
-            let entry = Entry(lights: state, button: button)
+        for button in buttons {
 
-            if !history.contains(entry) {
-                let newState = state.symmetricDifference(button)
+            let entry = Entry(state: state, button: button)
+            if history.contains(entry) { continue }
 
-                history.insert(entry)
-                greedy(state: newState, clicks: clicks + 1)
-                history.remove(entry)
-
-                // Abort if we've already found a better solution
-                if clicks + 1 >= total { return }
+            let newState = state.enumerated().map {
+                if button.contains($0.offset) { $0.element + 1 } else { $0.element }
             }
+
+            history.insert(entry)
+            greedy(state: newState, clicks: clicks + 1)
+            history.remove(entry)
+
+            if clicks + 1 >= total { return }
         }
     }
 
-    greedy(state: Set<Int>(), clicks: 0)
+    greedy(state: Array(repeating: 0, count: joltage.count), clicks: 0)
 
     // print("it took \(total) clicks")
     // print("----")
