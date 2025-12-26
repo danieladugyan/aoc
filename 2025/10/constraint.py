@@ -24,14 +24,14 @@ for line in data:
 
     targets = [int(t) for t in parts.pop()[1:-1].split(",")]
     buttons = [{int(t) + 1 for t in b[1:-1].split(",")} for b in parts]
-    print(targets, buttons, end=" => ")
+    print(targets, buttons)
 
     with instance.branch() as i:
         i["targets"] = targets
         i["buttons"] = buttons
         clicks = int(str(i.solve()))
 
-    print(clicks)
+    print(f"\t => {clicks} clicks")
     total += clicks
 
 # Output
